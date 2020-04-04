@@ -50,9 +50,9 @@ const Mutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) }
       },
       async resolve(parent, { email }) {
-        const emailExist = await Emails.find({ email });
+        const emailExist = await Emails.findOne({ email });
         if (emailExist) {
-          throw new Error("Your email has already been added");
+          throw new Error("This email has already been added");
         }
         let newEmail = new Emails({
           email
